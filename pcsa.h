@@ -21,7 +21,7 @@ class PCSA{
     
     
     public:
-        PCSA();
+        PCSA(int k);
         ~PCSA();
         long long compute(unsigned long long x);
         void updatePCSA(string linea);

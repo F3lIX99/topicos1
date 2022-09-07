@@ -1,7 +1,7 @@
 #include "pcsa.h"
 
-PCSA::PCSA(){
-    k=31;
+PCSA::PCSA(int k){
+    k=k;
     phi=0.77351;
     errStd=0.2;
     M= 16;//round(pow(phi/errStd,2));
