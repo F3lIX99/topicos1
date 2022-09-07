@@ -7,15 +7,17 @@ using namespace std;
 class PCSA{
     private:
         int M;
+        float errStd;
         float phi;
         int k;
         unsigned long long x;
-        hash<string> h1;
         int sum;
         double media;
         int shift;
         long long* sketch;
         string linea;
+        hash<string> h1;
+        long long unsigned lo;
     
     
     public:
@@ -23,5 +25,5 @@ class PCSA{
         ~PCSA();
         long long compute(unsigned long long x);
         void updatePCSA(string linea);
-        long long estimacion(int k);
+        long long estimacion();
 };
