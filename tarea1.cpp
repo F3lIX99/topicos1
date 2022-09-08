@@ -12,6 +12,7 @@ int main ()
     int k=31;  
     string filename("GCF_000308155.1_EptFus1.0_genomic.fna");
     string linea;
+    //vector <string> lineas;
     string kmer;
                                 //para leer linea por linea
     ifstream input_file(filename);
@@ -24,9 +25,10 @@ int main ()
     double t=0;
     PCSA *pcsa = new PCSA(k);
     start=clock();
-    for(int i=0;i!=EOF;i++){
-        getline(input_file,linea);
-
+    //for(int i=0;i!=EOF;i++){
+    while(!input_file.eof()){    
+    //getline(input_file,linea);
+    input_file >> linea; 
         if(linea[0]=='>'|| linea[0] == 'N') continue;
 
         /*else if(linea[0]=='N'|| linea[0] == 'n')
