@@ -25,10 +25,9 @@ int main ()
     double t=0;
     PCSA *pcsa = new PCSA(k);
     start=clock();
-    //for(int i=0;i!=EOF;i++){
+
     while(!input_file.eof()){    
-    //getline(input_file,linea);
-    input_file >> linea; 
+        input_file >> linea; 
         if(linea[0]=='>'|| linea[0] == 'N') continue;
 
         /*else if(linea[0]=='N'|| linea[0] == 'n')
@@ -64,24 +63,5 @@ int main ()
     }
     cout<<pcsa->estimacion()<<endl;
     
-    /*
-    while( (input_file >> linea)){
-        for(int i=0,j=0;i<linea.length()-1;i++){
-            if(linea[i]=='A'||linea[i]=='C'||linea[i]=='G'||linea[i]=='T'||linea[i]=='a'||linea[i]=='c'||linea[i]=='g'||linea[i]=='t'){
-                array[j]=linea[i];
-                j++;
-                if(j>k){
-                    j=0;
-                    updatePCSA(array);
-                    array.clear();
-                    
-                }
-                 
-            
-            }
-        }   
-        
-    }
-    */
     return 0;
 }
