@@ -12,7 +12,6 @@ int main ()
     int k=31;  
     string filename("GCF_000308155.1_EptFus1.0_genomic.fna");
     string linea;
-    //vector <string> lineas;
     string kmer;
                                 //para leer linea por linea
     ifstream input_file(filename);
@@ -25,43 +24,39 @@ int main ()
     double t=0;
     PCSA *pcsa = new PCSA(k);
     start=clock();
+    int j;
+    int b=0;
 
-    while(!input_file.eof()){    
-        input_file >> linea; 
-        if(linea[0]=='>'|| linea[0] == 'N') continue;
-
-        /*else if(linea[0]=='N'|| linea[0] == 'n')
-            for(int j=0;j<linea.length;j++)
-                if(linea[j]=='N')
-                    continue;
-                else   
-                    cout<<linea<<endl;*/
-
-        else if(linea[0]=='a'|| linea[0]=='A'||linea[0]=='T'|| linea[0]=='t'||linea[0]=='c'|| linea[0]=='C'||linea[0]=='G'|| linea[0]=='g'){
-           int b=0;
-           for(int a=0;a<linea.length() ;a++){
-                
-                if(b<=k){
-                    kmer+=linea[a];
-                    if(a==linea.length()-1){
-                        pcsa->updatePCSA(kmer);
-                    }
-                    b++;
-                }
+    
+    while(!input_file.eof()){   
+        //getline(input_file,linea); 
+        input_file >> linea;
+        if(linea[0]=='>') continue;
+        else{
+            for(int i=0;i<linea.length();i++){
+                if(linea[i]=='N') continue;
                 else{
-                    b=0;
-                    pcsa->updatePCSA(kmer);
-                    kmer.clear();
+                    if(b<=k){
+                        kmer+=linea[i];
+                        if(i==linea.length()-1){
+                            //cout<<kmer<<endl;
+                            pcsa->updatePCSA(kmer);
+                            kmer.clear();
+                        }
+                        b++;
+                    }
+                    else{
+                        b=0;
+                        //cout<<kmer<<endl;
+                        pcsa->updatePCSA(kmer);
+                        kmer.clear();
+                    }
+           
                 }
-           
-           }
-           
+            }  
         }
-        
-        else
-            continue;    
+   
     }
     cout<<pcsa->estimacion()<<endl;
-    
     return 0;
 }
