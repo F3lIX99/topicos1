@@ -11,8 +11,9 @@ class hyperLogLog{
         int m;
         
     public:
-        hyperLogLog();
+        hyperLogLog(int b);
         double estimacion();
         double correccion();
         void merge(long long* s1, long long*s2);
+        void jaccard();
 };

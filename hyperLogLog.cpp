@@ -1,6 +1,6 @@
  #include "hyperLogLog.h"
 
-hyperLogLog::hyperLogLog(){
+hyperLogLog::hyperLogLog(int b){
   alfa16 = 0.673;
   alfa32 = 0.697;
   alfa64 = 0.709;
@@ -11,17 +11,19 @@ hyperLogLog::hyperLogLog(){
 }
 
 double hyperLogLog::estimacion(){
-  double valor;
+  double valor=0;
   for(int j=0;j<m-1;j++){
-    valor = 
+    valor += pow(2,-M[j]);
   }
+  valor=1/valor;
 
-  E = (alfam * pow(m,2) * for(j=0;j<m-1;j++) {pow(2,-M[j])}
+  E = (alfam * pow(m,2) * valor)
+  return E;
 }
 double hyperLogLog::correccion(){
   E = 0;
   int V = 0;
-  if (E <= 5 / 2 * m && V != 0) {
+  if (E <= 5/2 * m && V != 0) {
     return m*log(static_cast<double>(m)/V);
   }
   else if (E <= 1/30* pow(2,32)) {
@@ -36,4 +38,8 @@ void hyperLogLog::merge(long long* s1,long long* s2){
   for(i=0;i<s1.lenght;i++){
     s1[i]=max(s1[i],s2[i]);
   }
+}
+
+void hyperLogLog::jaccard(){
+  
 }
