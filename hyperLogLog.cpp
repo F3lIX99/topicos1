@@ -1,6 +1,7 @@
  #include "hyperLogLog.h"
 
 hyperLogLog::hyperLogLog(int b){
+  a=b;
   alfa16 = 0.673;
   alfa32 = 0.697;
   alfa64 = 0.709;
@@ -38,11 +39,11 @@ double hyperLogLog::correccion(){
 }
 
 void hyperLogLog::merge(unsigned int s1[],unsigned int s2[]){
-  int a = s1.size();
+  /*int a = s1.size();
 
   for(int i=0;i<a;i++){
     s1[i]=max(s1[i],s2[i]);
-  }
+  }*/
 }
 
 void hyperLogLog::jaccard(){
@@ -51,9 +52,18 @@ void hyperLogLog::jaccard(){
 
 void hyperLogLog::update(string linea){
   x = h2(linea);
-  j = 1 + (x >> (64-b));
-  w = 
+  j = 1 + (x >> (64-a));
+  int pos = 0;
+  x = (x << a);
+  /*while (x > 0) {
+    x = x >> 1;
+    pos++;
+  }*/
+  pos = __builtin_clzll(x);
+  registros[j]= max(registros[j],(double)pos);
+  cout<<registros[j]<<endl;
+  
+  } 
 
 
 
-}

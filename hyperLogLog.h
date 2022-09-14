@@ -13,6 +13,7 @@ class hyperLogLog{
         double* registros;
         unsigned long long x;
         int j;
+        int a;
         
         //unsigned int s1[],s2[];
     public:
