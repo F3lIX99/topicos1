@@ -39,7 +39,7 @@ int main ()
     hyperLogLog *hll = new hyperLogLog(tamano);
     int j;
     int b=0;
-
+    int contador1=0;
     
     while(!input_file.eof()){   
         input_file >> linea;
@@ -52,7 +52,7 @@ int main ()
                         kmer+=linea[i];
                         if(i==linea.length()-1){
                             //pcsa->updatePCSA(kmer);
-                            hll->update(kmer);
+                            //hll->update(kmer);
                             kmer.clear();
                         }
                         b++;
@@ -60,7 +60,7 @@ int main ()
                     else{
                         b=0;
                         //pcsa->updatePCSA(kmer);
-                        hll->update(kmer);
+                        //hll->update(kmer);
                         kmer.clear();
                     }
            
@@ -72,8 +72,8 @@ int main ()
     
     //cout<<hll->estimacion()<<endl;
     //cout<<hll->correccion()<<endl;
-    double es1 = hll->estimacion();
-    double* s1= hll->getsketch();
+    //double es1 = hll->estimacion();
+    //double* s1= hll->getsketch();
     input_file.close();
     //lectura del otro archivo
     ifstream input_file1(filename2);
@@ -84,7 +84,6 @@ int main ()
     }
 
     b=0;
-
     while(!input_file1.eof()){   
         input_file1 >> linea;
         if(linea[0]=='>') continue;
@@ -95,7 +94,7 @@ int main ()
                     if(b<=k){
                         kmer+=linea[i];
                         if(i==linea.length()-1){
-                            //pcsa->updatePCSA(kmer);
+                            pcsa->updatePCSA(kmer);
                             hll->update(kmer);
                             kmer.clear();
                         }
@@ -103,7 +102,7 @@ int main ()
                     }
                     else{
                         b=0;
-                        //pcsa->updatePCSA(kmer);
+                        pcsa->updatePCSA(kmer);
                         hll->update(kmer);
                         kmer.clear();
                     }
@@ -114,16 +113,16 @@ int main ()
    
     }
     input_file1.close();
-    double* s2= hll->getsketch();
-    double es2 = hll->estimacion();
-    double* s3 = merge(s1,s2,tamano);
-    cout<<"la cardinalidad del merge es:"<<hll->estimacionj(s3)<<endl;
-    double esunion = hll->estimacionj(s3);
+    //double* s2= hll->getsketch();
+    //double es2 = hll->estimacion();
+    //double* s3 = merge(s1,s2,tamano);
+    //cout<<"la cardinalidad del merge es:"<<hll->estimacionj(s3)<<endl;
+    //double esunion = hll->estimacionj(s3);
 
-    cout<<"el JACCCCARD ES:"<<jaccard(es1,es2,esunion)<<endl;
+    //cout<<"el JACCCCARD ES:"<<jaccard(es1,es2,esunion)<<endl;
       
     
 
-    //cout<<pcsa->estimacion()<<endl;
+    cout<<pcsa->estimacion()<<endl;
     return 0;
 }

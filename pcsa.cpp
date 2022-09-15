@@ -3,9 +3,9 @@
 PCSA::PCSA(int k){
     k=k;
     phi=0.77351;
-    errStd=0.2;
-    M = round(pow(phi/errStd,2));
-    lo = log2(M); 
+    errStd=0.05;
+    M = ceil(phi/errStd);
+    lo = log2(M);
     media = 0;
     shift = 0;
     x=0;
