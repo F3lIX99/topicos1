@@ -15,12 +15,11 @@ class hyperLogLog{
         int j;
         int a;
         
-        //unsigned int s1[],s2[];
     public:
         hyperLogLog(int b);
         double estimacion();
+         double estimacionj(double* s1);
         double correccion();
         void update(string linea);
-        void merge(unsigned int s1[], unsigned int s2[]);
-        void jaccard();
+        double* getsketch();
 };
