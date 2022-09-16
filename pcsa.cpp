@@ -6,6 +6,10 @@ PCSA::PCSA(int k){
     errStd=0.05;
     M = ceil(phi/errStd);
     lo = log2(M);
+<<<<<<< HEAD
+=======
+    media = 0;
+>>>>>>> 86931c32ba28cb50693bc1d296c441635c9855b8
     shift = 0;
     sketch = new long long[M];
     for(int i=0;i<M;i++) sketch[i]=0;
