@@ -10,9 +10,6 @@ class PCSA{
         float errStd;
         float phi;
         int k;
-        unsigned long long x;
-        int sum;
-        double media;
         int shift;
         long long* sketch;
         string linea;

@@ -3,13 +3,12 @@
 PCSA::PCSA(int k){
     k=k;
     phi=0.77351;
-    errStd=0.2;
-    M = round(pow(phi/errStd,2));
-    lo = log2(M); 
-    media = 0;
+    errStd=0.05;
+    M = ceil(phi/errStd);
+    lo = log2(M);
     shift = 0;
-    x=0;
     sketch = new long long[M];
+    for(int i=0;i<M;i++) sketch[i]=0;
 }
 
 long long PCSA::compute(unsigned long long x){
@@ -17,16 +16,17 @@ long long PCSA::compute(unsigned long long x){
 }
 
 void PCSA::updatePCSA(string linea){ 
-    x = h1(linea);
-    shift = (x >> (64-lo));
-    sketch[shift]=sketch[shift] | compute(x);
+    unsigned long long aux;
+    aux = h1(linea);
+    shift = (aux >> (64-lo));
+    sketch[shift]=sketch[shift] | compute(aux);
 }
 
 long long PCSA::estimacion(){
-    sum=0;
-    for(int i=0;i<shift;i++){
-        sum+= log2 (compute(sketch[shift]));   
+    long long sum=0;
+    for(int i=0;i<M;i++){
+        sum+= log2 (compute(sketch[i]));   
     }
-    media=(1.0*sum/M);
-    return (M*pow(2,(media/phi)));
+    double media=(1.0*sum/M);
+    return (M*pow(2,(media)))/phi;
 }
