@@ -106,7 +106,7 @@ int main ()
     double es2 = hll2->estimacion();
     cout<<"La estimacion hll es: "<<es1<<" y la estimacion hll2 es: "<< es2<<endl;
     double s3 = merge(s1,s2,tamano);
-    cout<<"el JACCCCARD ES: "<<jaccard(es1,es2,s3)<<endl;
+    cout<<"el coeficiente jaccard es: "<<jaccard(es1,es2,s3)<<endl;
     cout<<"la estimacion PCSA del primer archivo es: "<<pcsa->estimacion()<<endl;
     cout<<"la estimacion PCSA del segundo archivo es: "<<pcsa2->estimacion()<<endl;
     cout<<timeInsert<<endl;
