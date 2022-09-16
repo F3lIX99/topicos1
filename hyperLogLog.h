@@ -18,7 +18,6 @@ class hyperLogLog{
     public:
         hyperLogLog(int b);
         double estimacion();
-         double estimacionj(double* s1);
         double correccion();
         void update(string linea);
         double* getsketch();
